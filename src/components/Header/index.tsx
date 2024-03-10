@@ -1,4 +1,4 @@
-import { BackButton, Container, Logo } from "./styles";
+import { BackButton, BackIcon, Container, Logo } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
 import logoImg from "@assets/estacio-logo.png";
@@ -17,9 +17,9 @@ const handleGoBack = ()=>{
     return(
         <Container>
             {
-            showBackButton && <BackButton onPress={handleGoBack}></BackButton>
+            showBackButton && <BackButton onPress={handleGoBack}><BackIcon/></BackButton>
             }
-            <Logo source={logoImg}/>
+            <Logo source={logoImg} resizeMode="cover"/>
         </Container>
     )
 }
