@@ -1,12 +1,14 @@
 import { Header } from "@components/Header"
-import { Text } from "react-native"
 import { Container } from "./styles"
+import PizzaTranslator from "./PizzaTranslator"
+import { Highlight } from "@components/Highlight"
 
 export function PizzaTranslation() {
     return (
         <Container>
             <Header showBackButton/>
-            <Text>Pizza</Text>
+            <Highlight title="Pizza Translator" subtitle="Tradutor para pizza! =D"/>
+            <PizzaTranslator/>
         </Container>
     )
 }
