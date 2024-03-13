@@ -3,8 +3,10 @@ export declare global {
       interface RootParamList {
         home: undefined;
         pizza: undefined;
+        listaDinamica: undefined;
         listaSimples: undefined;
-        listawithSession: undefined;
+        listaSection: undefined;
+        imageItem: undefined;
       }
     }
   }
