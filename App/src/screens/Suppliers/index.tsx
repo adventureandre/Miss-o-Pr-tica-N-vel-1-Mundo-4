@@ -1,10 +1,11 @@
 import { Text } from "react-native";
+import { Container } from "./styles";
 
 export function Suppliers(){
 
     return(
-        <Text>
-            aki
-        </Text>
+        <Container>
+           <Text>e ai</Text>
+        </Container>
     )
 }
