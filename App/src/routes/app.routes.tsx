@@ -5,7 +5,7 @@ const {Navigator, Screen} = createNativeStackNavigator();
 
 export function AppRouter(){
     return(
-        <Navigator>
+        <Navigator screenOptions={{ headerShown:false}}>
             <Screen
             name="suppliers"
             component={Suppliers}
