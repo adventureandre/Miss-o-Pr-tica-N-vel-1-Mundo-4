@@ -6,6 +6,7 @@ import ImgLogo from "@assets/favicon.png"
 import { Button } from "@components/Button";
 import { FlatList } from "react-native";
 import { ListEmpty } from "@components/ListEmpty";
+import { useNavigation } from "@react-navigation/native";
 
 const fornecedores = [
     {
@@ -19,10 +20,23 @@ const fornecedores = [
         companyName: 'Milly',
         companyDescription: 'artezanato',
         companyLogo: 'logo'
+    },
+    {
+        id: "3",
+        companyName: 'Milly',
+        companyDescription: 'artezanato',
+        companyLogo: 'logo'
     }
 ]
 
 export function Suppliers() {
+
+    const navigation =  useNavigation();
+
+    function handleGetCadastro() {
+        navigation.navigate('cadastro')
+
+    }
 
     return (
         <Container>
@@ -43,7 +57,12 @@ export function Suppliers() {
                 ListEmptyComponent={()=> <ListEmpty message='Cadastre o primeiro fornecedor!' />}
                 showsVerticalScrollIndicator={false}
             />
-            <Button title="Cadastrar Fornecedor" type="PRIMARY" />
+            <Button 
+            onPress={handleGetCadastro}
+            title="Cadastrar Fornecedor" 
+            type="PRIMARY"
+
+            />
         </Container>
     )
 }
