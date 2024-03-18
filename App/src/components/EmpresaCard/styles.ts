@@ -2,9 +2,6 @@ import { Image, ImageProps, TouchableOpacity } from "react-native";
 import { css } from "styled-components";
 import styled from "styled-components/native";
 
-type LogoProps = ImageProps & {
-    ver?: boolean;
-}
 
 export const Container = styled(TouchableOpacity)`
 width:100%;
@@ -14,14 +11,13 @@ border-radius: 6px;
 
 flex-direction: row;
 align-items: center;
-gap: 20;
+gap: 20px;
 
 padding: 24px;
-margin-bottom:12px;
-
+margin-bottom: 12px;
 `
 
-export const Logo = styled(Image)<LogoProps>`
+export const Logo = styled(Image)`
   width: 50px;
   height: 50px;
 `;

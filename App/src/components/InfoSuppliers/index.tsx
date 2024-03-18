@@ -1,10 +1,15 @@
 import { Container, Item } from "./styles"
 
-export const InfoSuppliers = () => {
+type Props = {
+    title: string,
+    quant: number,
+}
+
+export const InfoSuppliers = ({quant,title}:Props) => {
     return (
         <Container>
-            <Item>Fornecedores</Item>
-            <Item>3</Item>
+            <Item>{title}</Item>
+            <Item>{quant}</Item>
         </Container>
 
     )
