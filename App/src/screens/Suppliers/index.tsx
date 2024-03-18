@@ -27,7 +27,7 @@ export function Suppliers() {
     return (
         <Container>
             <Header />
-            <InfoSuppliers />
+            <InfoSuppliers title="Fornecedores" quant={fornecedores.length} />
             <FlatList
                 data={fornecedores}
                 keyExtractor={item => item.id}
