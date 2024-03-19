@@ -18,3 +18,8 @@ ${({theme})=> css`
 border-radius: 6px;
 padding: 16px;
 `;
+
+export const Error = styled.Text`
+margin-top: 2px;
+color: ${({theme})=> theme.COLORS.RED};
+`
