@@ -18,7 +18,7 @@ export function ControlledTextInput<FormType extends FieldValues>({
                     value={field.value}
                     onChangeText={field.onChange}
                     onBlur={field.onBlur}
-                errorMessage={fieldState.error?.message}
+                    errorMessage={fieldState.error?.message}
                 />
             )}
         />

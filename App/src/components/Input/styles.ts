@@ -20,6 +20,6 @@ padding: 16px;
 `;
 
 export const Error = styled.Text`
-margin-top: -10px;
-color: ${({theme})=> theme.COLORS.WHITE};
+margin-top: 2px;
+color: ${({theme})=> theme.COLORS.RED};
 `

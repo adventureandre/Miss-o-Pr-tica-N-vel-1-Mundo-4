@@ -16,6 +16,7 @@ background-color: ${({theme})=>theme.COLORS.GRAY_600};
 export const Content = styled.View`
 flex: 1;
 gap: 15px;
+min-height: 400px;
 `
 
 
@@ -37,3 +38,13 @@ padding: 16px;
 `
 
 export const Option = styled(Picker.Item)``;
+
+export const SectionContainer = styled.View`
+  margin-top: 20px; 
+  min-height: 100px;
+`;
+
+export const Label =  styled.Text`
+color: ${({theme})=> theme.COLORS.WHITE};
+margin-bottom: 5px;
+`
