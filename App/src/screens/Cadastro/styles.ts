@@ -8,7 +8,7 @@ flex:1;
 width: 100%;
 padding-left: 30px;
 padding-right: 30px;
-padding-bottom: 30px;
+padding-bottom: 25px;
 
 background-color: ${({theme})=>theme.COLORS.GRAY_600};
 `
@@ -40,7 +40,7 @@ padding: 16px;
 export const Option = styled(Picker.Item)``;
 
 export const SectionContainer = styled.View`
-  margin-top: 20px; 
+  margin-top: 10px; 
   min-height: 100px;
 `;
 
