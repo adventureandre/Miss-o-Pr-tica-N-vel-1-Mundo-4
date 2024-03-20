@@ -8,9 +8,9 @@ import { ControlledTextInput } from "@components/controller/ControlledTextInput"
 
 type SchemaCadastro = {
     nome: string,
-    desc: string,
-    categoria: string,
     endereco: string,
+    contato: string,
+    categoria: string,
 }
 
 export function Cadastro() {
@@ -22,8 +22,9 @@ export function Cadastro() {
     } = useForm<SchemaCadastro>({
         defaultValues: {
             nome: "",
-            desc: "",
             endereco: "",
+            contato: "",
+            categoria: "",
         },
     })
 
@@ -60,7 +61,7 @@ export function Cadastro() {
                     <Label>Endereço:</Label>
                     <ControlledTextInput
                         control={control}
-                        name="desc"
+                        name="endereco"
                         rules={{
                             required: 'Insira um Endereço',
                         }}
@@ -72,7 +73,7 @@ export function Cadastro() {
                     <Label>Contato:</Label>
                     <ControlledTextInput
                         control={control}
-                        name="endereco"
+                        name="contato"
                         rules={{ 
                             required: 'Insira seu Contato', 
                             minLength: {
@@ -82,6 +83,18 @@ export function Cadastro() {
                         }}
                         placeholder="Contato"
                         keyboardType="numeric"
+                    />
+                </SectionContainer>
+
+                <SectionContainer>
+                    <Label>Categoria:</Label>
+                    <ControlledTextInput
+                        control={control}
+                        name="categoria"
+                        rules={{
+                            required: 'Insira um produto da sua categoria',
+                        }}
+                        placeholder="Produtos fornecidos"
                     />
                 </SectionContainer>
 

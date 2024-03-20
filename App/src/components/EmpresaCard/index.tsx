@@ -1,29 +1,27 @@
 import { ImageSourcePropType, Text, View } from "react-native";
 import { Container, Logo, Name, Desc, Seta, Content } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import { SuppliersProps } from "@screens/Suppliers";
 
-
-
-interface Props {
-    logoSource: ImageSourcePropType;
-    companyName: string;
-    companyDesc: string;
+interface EmpresaCardProps {
+    supplier: SuppliersProps;
 }
 
-export default function EmpresaCard({ logoSource, companyName, companyDesc }: Props) {
+export default function EmpresaCard({ supplier }: EmpresaCardProps) {
     const navigation = useNavigation();
 
     function handleGetPerfil() {
-        navigation.navigate('perfil')
-
+        navigation.navigate('perfil');
     }
 
     return (
         <Container onPress={handleGetPerfil}>
-            <Logo source={logoSource} />
+            <Logo source={{
+                uri:supplier.logo
+            }} />
             <Content>
-                <Name>{companyName}</Name>
-                <Desc>{companyDesc}</Desc>
+                <Name>{supplier.name}</Name>
+                <Desc>{supplier.categoria}</Desc>
 
             </Content>
             <Seta />

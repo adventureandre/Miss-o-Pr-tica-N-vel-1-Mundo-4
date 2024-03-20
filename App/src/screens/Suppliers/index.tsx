@@ -1,32 +1,42 @@
-import { Header } from "@components/Header";
-import { Container } from "./styles";
-import { InfoSuppliers } from "@components/InfoSuppliers";
-import EmpresaCard from "@components/EmpresaCard";
-import ImgLogo from "@assets/favicon.png"
-import { Button } from "@components/Button";
 import { FlatList } from "react-native";
-import { ListEmpty } from "@components/ListEmpty";
 import { useNavigation } from "@react-navigation/native";
 
-const fornecedores = [
+import { Container } from "./styles";
+import ImgLogo from "@assets/favicon.png"
+
+import { InfoSuppliers } from "@components/InfoSuppliers";
+import { Header } from "@components/Header";
+import EmpresaCard from "@components/EmpresaCard";
+import { Button } from "@components/Button";
+import { ListEmpty } from "@components/ListEmpty";
+
+
+export type SuppliersProps = {
+    id: string;
+    name: string;
+    logo: string;
+    endereco: string;
+    contato: string;
+    categoria: string;
+}
+
+const fornecedores: SuppliersProps[] = [
     {
         id: "1",
-        companyName: 'alfa',
-        companyDescription: 'vivendo na roça',
-        companyLogo: 'logo'
+        name: 'alfa',
+        categoria: 'vivendo na roça',
+        logo: 'logo',
+        contato:'15589',
+        endereco:'rua 2'
     },
     {
         id: "2",
-        companyName: 'Milly',
-        companyDescription: 'artezanato',
-        companyLogo: 'logo'
+        name: 'Mylli',
+        categoria: 'artesanato',
+        logo: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
+        contato:'15589',
+        endereco:'rua 2'
     },
-    {
-        id: "3",
-        companyName: 'Milly',
-        companyDescription: 'artezanato',
-        companyLogo: 'logo'
-    }
 ]
 
 export function Suppliers() {
@@ -47,9 +57,7 @@ export function Suppliers() {
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <EmpresaCard
-                        logoSource={ImgLogo}
-                        companyName={item.companyName}
-                        companyDesc={item.companyDescription}
+                    supplier={item}
                     />
 
                 )}
