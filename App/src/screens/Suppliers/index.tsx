@@ -1,5 +1,5 @@
 import { FlatList } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 import { Container } from "./styles";
 import ImgLogo from "@assets/favicon.png"
@@ -9,10 +9,12 @@ import { Header } from "@components/Header";
 import EmpresaCard from "@components/EmpresaCard";
 import { Button } from "@components/Button";
 import { ListEmpty } from "@components/ListEmpty";
+import { useCallback, useEffect, useState } from "react";
+import { supplierGetAll } from "src/storege/supplier/supplierGetAll";
 
 
 export type SuppliersProps = {
-    id: string;
+    id: string | number;
     name: string;
     logo: string;
     endereco: string;
@@ -20,55 +22,55 @@ export type SuppliersProps = {
     categoria: string;
 }
 
-const fornecedores: SuppliersProps[] = [
-    {
-        id: "1",
-        name: 'alfa',
-        categoria: 'vivendo na roça',
-        logo: 'logo',
-        contato:'15589',
-        endereco:'rua 2'
-    },
-    {
-        id: "2",
-        name: 'Mylli',
-        categoria: 'artesanato',
-        logo: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
-        contato:'15589',
-        endereco:'rua 2'
-    },
-]
+
 
 export function Suppliers() {
+    const [suppliers, setSuppliers] = useState<SuppliersProps[]>([]);
 
-    const navigation =  useNavigation();
+    const navigation = useNavigation();
 
     function handleGetCadastro() {
         navigation.navigate('cadastro')
 
     }
 
+    async function fetchSuppliers() {
+        try {
+            const data = await supplierGetAll();
+            setSuppliers(data);
+
+
+        } catch (error) {
+            console.log("error", error)
+        }
+    }
+
+    useFocusEffect(useCallback(() => {
+        fetchSuppliers();
+    }, []))
+
+
     return (
         <Container>
             <Header />
-            <InfoSuppliers title="Fornecedores" quant={fornecedores.length} />
+            <InfoSuppliers title="Fornecedores" quant={suppliers.length} />
             <FlatList
-                data={fornecedores}
-                keyExtractor={item => item.id}
+                data={suppliers}
+                keyExtractor={item => String(item.id)}
                 renderItem={({ item }) => (
                     <EmpresaCard
-                    supplier={item}
+                        supplier={item}
                     />
 
                 )}
-                contentContainerStyle={fornecedores.length === 0 && {flex: 1}}
-                ListEmptyComponent={()=> <ListEmpty message='Cadastre o primeiro fornecedor!' />}
+                contentContainerStyle={suppliers.length === 0 && { flex: 1 }}
+                ListEmptyComponent={() => <ListEmpty message='Cadastre o primeiro fornecedor!' />}
                 showsVerticalScrollIndicator={false}
             />
-            <Button 
-            onPress={handleGetCadastro}
-            title="Cadastrar Fornecedor" 
-            type="PRIMARY"
+            <Button
+                onPress={handleGetCadastro}
+                title="Cadastrar Fornecedor"
+                type="PRIMARY"
 
             />
         </Container>
