@@ -1,10 +1,17 @@
 import { useForm } from "react-hook-form";
-import { Container, Content, Label, Option, SectionContainer, Select } from "./styles";
+import { Container, Content, Label, SectionContainer } from "./styles";
+
+import uuid from "react-native-uuid";
 
 import { Header } from "@components/Header";
 import { Highlight } from "@components/Highlight";
 import { Button } from "@components/Button";
 import { ControlledTextInput } from "@components/controller/ControlledTextInput";
+import { SuppliersProps } from "@screens/Suppliers";
+import { supplierCreate } from "src/storege/supplier/supplierCreate";
+import { useNavigation } from "@react-navigation/native";
+import logo from "./assets/logo";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 type SchemaCadastro = {
     nome: string,
@@ -14,6 +21,8 @@ type SchemaCadastro = {
 }
 
 export function Cadastro() {
+
+    const navigation =  useNavigation();
 
     const {
         control,
@@ -28,13 +37,26 @@ export function Cadastro() {
         },
     })
 
-    function submitForm(values: SchemaCadastro) {
-        console.log(values)
+    async function submitForm(values: SchemaCadastro) {
+        const newCadSupplier: SuppliersProps = {
+            name: values.nome,
+            categoria: values.categoria,
+            contato: values.contato,
+            endereco: values.endereco,
+            id: String(uuid.v4()),
+            logo: logo
+        }
+
+        await supplierCreate(newCadSupplier)
+        navigation.navigate('suppliers');
+
+
     }
 
 
 
     return (
+        <KeyboardAwareScrollView contentContainerStyle={{flexGrow:1}} showsVerticalScrollIndicator={false}>
         <Container>
 
             <Header showBackButton />
@@ -54,6 +76,7 @@ export function Cadastro() {
                             }
                         }}
                         placeholder="Nome:"
+                        keyboardType="web-search"
                     />
                 </SectionContainer>
 
@@ -82,7 +105,7 @@ export function Cadastro() {
                               }
                         }}
                         placeholder="Contato"
-                        keyboardType="numeric"
+                        keyboardType="phone-pad"
                     />
                 </SectionContainer>
 
@@ -107,5 +130,6 @@ export function Cadastro() {
             />
 
         </Container>
+        </KeyboardAwareScrollView>
     )
 }
