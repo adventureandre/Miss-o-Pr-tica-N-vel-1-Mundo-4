@@ -3,7 +3,9 @@ export declare global {
       interface RootParamList {
         suppliers: undefined,
         cadastro: undefined,
-        perfil: undefined,
+        perfil: {
+          supplierId: string,
+        },
       }
     }
   }

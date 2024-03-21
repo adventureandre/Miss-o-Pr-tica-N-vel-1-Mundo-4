@@ -14,7 +14,7 @@ import { supplierGetAll } from "src/storege/supplier/supplierGetAll";
 
 
 export type SuppliersProps = {
-    id: string | number;
+    id: string;
     name: string;
     logo: string;
     endereco: string;
