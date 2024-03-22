@@ -7,8 +7,6 @@ export async function supplierCreate(newSupplier: SuppliersProps) {
     try {
         const storedSupplier = await supplierGetAll();
 
-        console.log(storedSupplier);
-
         const supplierExists = storedSupplier.find(supplier => supplier.name === newSupplier.name);
 
         if (supplierExists) {
