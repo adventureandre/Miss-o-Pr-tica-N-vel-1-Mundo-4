@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import logo from "./assets/logo";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-type SchemaCadastro = {
+export type SchemaCadastro = {
     nome: string,
     endereco: string,
     contato: string,
