@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import logo from "./assets/logo";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-type SchemaCadastro = {
+export type SchemaCadastro = {
     nome: string,
     endereco: string,
     contato: string,
@@ -22,7 +22,7 @@ type SchemaCadastro = {
 
 export function Cadastro() {
 
-    const navigation =  useNavigation();
+    const navigation = useNavigation();
 
     const {
         control,
@@ -49,87 +49,83 @@ export function Cadastro() {
 
         await supplierCreate(newCadSupplier)
         navigation.navigate('suppliers');
-
-
     }
 
-
-
     return (
-        <KeyboardAwareScrollView contentContainerStyle={{flexGrow:1}} showsVerticalScrollIndicator={false}>
-        <Container>
+        <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
+            <Container>
 
-            <Header showBackButton />
-            <Highlight title="Cadastro" />
+                <Header showBackButton />
+                <Highlight title="Cadastro" />
 
-            <Content>
-                <SectionContainer>
-                    <Label>Nome:</Label>
-                    <ControlledTextInput
-                        control={control}
-                        name="nome"
-                        rules={{ 
-                            required: 'nome obrigatório',
-                            minLength: {
-                                value: 3,
-                                message: 'Nome deve ter pelo menos 3 caracteres'
-                            }
-                        }}
-                        placeholder="Nome:"
-                        keyboardType="web-search"
-                    />
-                </SectionContainer>
+                <Content>
+                    <SectionContainer>
+                        <Label>Nome:</Label>
+                        <ControlledTextInput
+                            control={control}
+                            name="nome"
+                            rules={{
+                                required: 'nome obrigatório',
+                                minLength: {
+                                    value: 3,
+                                    message: 'Nome deve ter pelo menos 3 caracteres'
+                                }
+                            }}
+                            placeholder="Nome:"
+                            keyboardType="web-search"
+                        />
+                    </SectionContainer>
 
-                <SectionContainer>
-                    <Label>Endereço:</Label>
-                    <ControlledTextInput
-                        control={control}
-                        name="endereco"
-                        rules={{
-                            required: 'Insira um Endereço',
-                        }}
-                        placeholder="Endereço"
-                    />
-                </SectionContainer>
+                    <SectionContainer>
+                        <Label>Endereço:</Label>
+                        <ControlledTextInput
+                            control={control}
+                            name="endereco"
+                            rules={{
+                                required: 'Insira um Endereço',
+                            }}
+                            placeholder="Endereço"
+                        />
+                    </SectionContainer>
 
-                <SectionContainer>
-                    <Label>Contato:</Label>
-                    <ControlledTextInput
-                        control={control}
-                        name="contato"
-                        rules={{ 
-                            required: 'Insira seu Contato', 
-                            minLength: {
-                                value: 9,
-                                message: 'Digite um telefone valído "9 digitos"'
-                              }
-                        }}
-                        placeholder="Contato"
-                        keyboardType="phone-pad"
-                    />
-                </SectionContainer>
+                    <SectionContainer>
+                        <Label>Contato:</Label>
+                        <ControlledTextInput
+                            control={control}
+                            name="contato"
+                            rules={{
+                                required: 'Insira seu Contato',
+                                minLength: {
+                                    value: 9,
+                                    message: 'Digite um telefone valído "9 digitos"'
+                                }
+                            }}
+                            placeholder="Contato"
+                            keyboardType="phone-pad"
+                        />
+                    </SectionContainer>
 
-                <SectionContainer>
-                    <Label>Categoria:</Label>
-                    <ControlledTextInput
-                        control={control}
-                        name="categoria"
-                        rules={{
-                            required: 'Insira um produto da sua categoria',
-                        }}
-                        placeholder="Produtos fornecidos"
-                    />
-                </SectionContainer>
-
-
-            </Content>
+                    <SectionContainer>
+                        <Label>Categoria:</Label>
+                        <ControlledTextInput
+                            control={control}
+                            name="categoria"
+                            rules={{
+                                required: 'Insira um produto da sua categoria',
+                            }}
+                            placeholder="Produtos fornecidos"
+                        />
+                    </SectionContainer>
 
 
-            <Button title="Cadastrar"
-                onPress={handleSubmit(submitForm)}
-            />
+                </Content>
 
-        </Container>
+
+                <Button title="Cadastrar"
+                    onPress={handleSubmit(submitForm)}
+                />
+
+            </Container>
         </KeyboardAwareScrollView>
     )
 }

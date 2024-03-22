@@ -10,8 +10,10 @@ interface EmpresaCardProps {
 export default function EmpresaCard({ supplier }: EmpresaCardProps) {
     const navigation = useNavigation();
 
+    const supplierId =  supplier.id
+
     function handleGetPerfil() {
-        navigation.navigate('perfil');
+        navigation.navigate("perfil",{supplierId});
     }
 
     return (
