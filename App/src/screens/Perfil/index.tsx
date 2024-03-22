@@ -1,18 +1,22 @@
 import { useCallback, useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { RouteProp, useFocusEffect, useRoute } from "@react-navigation/native";
+import { RouteProp, useFocusEffect, useNavigation, useRoute } from "@react-navigation/native";
 
 import * as ImagePicker from 'expo-image-picker';
 
 import { suppliersGetById } from "src/storege/supplier/supplierGetById";
+import { supplierSetImage } from "src/storege/supplier/supplierSetImage";
 
 import { Header } from "@components/Header";
 import { Highlight } from "@components/Highlight";
 
 
-import { AlterImage, Container, Logo, LogoContainer } from "./styles";
 import { SuppliersProps } from "@screens/Suppliers";
-import { supplierSetImage } from "src/storege/supplier/supplierSetImage";
+import { Button } from "@components/Button";
+
+import { AlterImage, Container, Logo, LogoContainer } from "./styles";
+import { suppliersRemoveById } from "src/storege/supplier/supplierRemoveById";
+import { Alert } from "react-native";
 
 interface PerfilProps {
     supplierId: string;
@@ -23,6 +27,8 @@ export function Perfil() {
 
     const route = useRoute<RouteProp<{ params: PerfilProps }, 'params'>>();
     const supplierId = route.params.supplierId;
+
+    const navigation =  useNavigation();
 
 
     const findSupplier = async () => {
@@ -48,7 +54,33 @@ export function Perfil() {
 
         }
     };
+
+    const handleDelete = async (supplierId: string) => {
+        try {
+            Alert.alert(
+                'Deletar fornecedor',
+                'Deseja realmente deletar esse fornecedor?',
+                [
+                    {
+                        text: 'Cancelar',
+                        onPress: () => console.log('Cancelado'),
+                        style: 'cancel'
+                    },
+                    {
+                        text: 'Confirmar',
+                        onPress: async () => {
+                            await suppliersRemoveById(supplierId);
+                            navigation.navigate('suppliers');
+                        }
+                    }
+                ]
+            );
+        } catch (error) {
+            Alert.alert('Erro ao deletar fornecedor');
+        }
+    }
     
+
     useFocusEffect(useCallback(
         () => {
             findSupplier();
@@ -61,14 +93,21 @@ export function Perfil() {
             <Container>
                 <Header showBackButton />
                 <Highlight title="Perfil" />
-               <LogoContainer>
-               <Logo source={{
-                    uri: supplier?.logo
-                }} />
-                </LogoContainer> 
-                <AlterImage title="Alterar foto" onPress={handleSetImage} />
 
+                <LogoContainer>
+                    <Logo source={{
+                        uri: supplier?.logo
+                    }} />
+
+                    <AlterImage title="Alterar foto" onPress={handleSetImage} />
+                </LogoContainer>
+
+
+                <Button title="Deletar Fornecedor"
+                    onPress={() => handleDelete(supplierId)}
+                />
             </Container>
+
         </KeyboardAwareScrollView>
     )
 }
