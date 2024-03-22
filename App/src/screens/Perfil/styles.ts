@@ -14,15 +14,18 @@ padding-bottom: 30px;
 
 background-color: ${({ theme }) => theme.COLORS.GRAY_600};
 `
+
 export const LogoContainer = styled.View`
-  border: 1px;
-  border-color: #cccc;
-  border-style: solid;
-  border-radius: '100%';
-`
+flex: 1;
+ 
+`;
 export const Logo = styled.Image`
   width: 150px;
   height: 150px;
+  border-width: 1px;
+  border-color: #cccc;
+  border-radius: 75px; 
+  overflow: hidden; 
 
 `;
 

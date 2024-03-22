@@ -10,9 +10,10 @@ import { Header } from "@components/Header";
 import { Highlight } from "@components/Highlight";
 
 
-import { AlterImage, Container, Logo, LogoContainer } from "./styles";
+import { AlterImage, Container, Content, Logo, LogoContainer } from "./styles";
 import { SuppliersProps } from "@screens/Suppliers";
 import { supplierSetImage } from "src/storege/supplier/supplierSetImage";
+import { Button } from "@components/Button";
 
 interface PerfilProps {
     supplierId: string;
@@ -48,6 +49,10 @@ export function Perfil() {
 
         }
     };
+
+    const handleDelete = (supplierId: string) =>{
+console.log(supplierId)
+    }
     
     useFocusEffect(useCallback(
         () => {
@@ -61,14 +66,21 @@ export function Perfil() {
             <Container>
                 <Header showBackButton />
                 <Highlight title="Perfil" />
+                
                <LogoContainer>
                <Logo source={{
-                    uri: supplier?.logo
+                   uri: supplier?.logo
                 }} />
-                </LogoContainer> 
+            
                 <AlterImage title="Alterar foto" onPress={handleSetImage} />
+                </LogoContainer> 
+               
 
+                <Button title="Deletar Fornecedor"
+                    onPress={()=>handleDelete(supplierId)}
+                />
             </Container>
+           
         </KeyboardAwareScrollView>
     )
 }
