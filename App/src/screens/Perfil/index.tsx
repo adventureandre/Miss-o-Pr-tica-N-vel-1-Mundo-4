@@ -92,7 +92,7 @@ export function Perfil() {
         <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
             <Container>
                 <Header showBackButton />
-                <Highlight title="Perfil" />
+                <Highlight title="Perfil" subtitle={supplier?.name}/>
 
                 <LogoContainer>
                     <Logo source={{
